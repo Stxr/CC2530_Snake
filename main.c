@@ -6,7 +6,6 @@ void main(void)
 {
   Snake_Init();
   while (1) {
-    Snake_Display();//画蛇
     HalLcd_HW_Display(LCD_Display_char);
   }
 }

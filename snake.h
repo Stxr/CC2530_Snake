@@ -3,7 +3,8 @@
 #include "hal_lcd.h"
 #include <ioCC2530.h>
 #include <string.h>
-
+#include <stdio.h>
+#include <math.h>
 #define LED1 P1_0       // P1.0口控制LED1
 #define MAX_LENGTH  200
 
@@ -18,6 +19,11 @@ void InitT3();//定时器3
 void Food_Create(void);//创造食物函数
 int Snake_Death(void);//判断蛇是否死亡，1死了 0活着
 int Snake_EatedFood(void);//1蛇吃到了食物，0没吃到
+void Init_Key(void);//按钮初始化
+int Snake_Key(void);//按钮
+void Snake_StartPage(void);//开始界面
+void Snake_EndPage(void);//结束界面
+
 int count=0;
 int Snake_Direction=0;
 struct Point{  //蛇点的坐标

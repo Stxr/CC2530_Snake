@@ -8,4 +8,5 @@ void HalLcd_HW_Control(uint8 cmd);
 void HalLcd_HW_Display(unsigned int a[][128]);//显示全屏数组
 void set_ddram_line_col(uint8 line,uint8 col);//设置行列
 void HalLcd_HW_Write(uint8 data);//写数据
+void HalLcd_HW_DisplayChinese(int num,int line,int offset);//显示中文
 #endif

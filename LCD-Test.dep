@@ -6,89 +6,37 @@
   <configuration>
     <name>Debug</name>
     <outputs>
-      <file>$PROJ_DIR$\type.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\LCD-Test.pbd</file>
-      <file>$PROJ_DIR$\Debug\Obj\snake.pbi</file>
-      <file>$PROJ_DIR$\Debug\Exe\LCD-Test.hex</file>
-      <file>$PROJ_DIR$\hal_lcd.h</file>
-      <file>$PROJ_DIR$\main.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
-      <file>$PROJ_DIR$\snake.c</file>
-      <file>$PROJ_DIR$\Debug\Obj\hal_lcd.pbi</file>
-      <file>$PROJ_DIR$\snake.h</file>
-      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-      <file>$PROJ_DIR$\Debug\Obj\snake.r51</file>
-      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
-      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
-      <file>$PROJ_DIR$\Debug\Exe\LCD-Test1.hex</file>
-      <file>$PROJ_DIR$\hal_lcd.c</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdio.h</file>
       <file>$TOOLKIT_DIR$\lib\clib\cl-pli-blxd-1e16x01.r51</file>
       <file>$PROJ_DIR$\Debug\Exe\LCD-Test.d51</file>
+      <file>$PROJ_DIR$\type.h</file>
       <file>$PROJ_DIR$\Debug\Obj\hal_lcd.r51</file>
-      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
       <file>$TOOLKIT_DIR$\inc\clib\sysmac.h</file>
+      <file>$TOOLKIT_DIR$\inc\clib\string.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\snake.r51</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\clib\stdarg.h</file>
+      <file>$TOOLKIT_DIR$\config\devices\Texas Instruments\lnk51ew_cc2530F256_banked.xcl</file>
+      <file>$PROJ_DIR$\Debug\Obj\snake.pbi</file>
+      <file>$TOOLKIT_DIR$\inc\clib\math.h</file>
+      <file>$PROJ_DIR$\hal_lcd.c</file>
+      <file>$PROJ_DIR$\main.c</file>
+      <file>$PROJ_DIR$\Debug\Exe\LCD-Test.hex</file>
+      <file>$PROJ_DIR$\snake.h</file>
+      <file>$PROJ_DIR$\hal_lcd.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\LCD-Test.pbd</file>
+      <file>$PROJ_DIR$\Debug\Exe\LCD-Test1.hex</file>
+      <file>$PROJ_DIR$\Debug\Obj\main.r51</file>
+      <file>$TOOLKIT_DIR$\inc\ioCC2530.h</file>
+      <file>$PROJ_DIR$\Debug\Obj\hal_lcd.pbi</file>
+      <file>$PROJ_DIR$\snake.c</file>
     </outputs>
     <file>
-      <name>$PROJ_DIR$\Debug\Exe\LCD-Test.hex</name>
+      <name>$PROJ_DIR$\Debug\Exe\LCD-Test.d51</name>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 13 18 6 16</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\main.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 10</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 6</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 12 0 4</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 12 0 4</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\snake.c</name>
-      <outputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 2</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 11</file>
-        </tool>
-      </outputs>
-      <inputs>
-        <tool>
-          <name>BICOMP</name>
-          <file> 9 4 0 12 19 20</file>
-        </tool>
-        <tool>
-          <name>ICC8051</name>
-          <file> 9 4 0 12 19 20</file>
-        </tool>
-      </inputs>
-    </file>
-    <file>
-      <name>$PROJ_DIR$\Debug\Exe\LCD-Test1.hex</name>
-      <inputs>
-        <tool>
-          <name>XLINK</name>
-          <file> 13 18 6 16</file>
+          <file> 10 4 20 7 1</file>
         </tool>
       </inputs>
     </file>
@@ -97,30 +45,85 @@
       <outputs>
         <tool>
           <name>BICOMP</name>
-          <file> 8</file>
+          <file> 22</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 18</file>
+          <file> 4</file>
         </tool>
       </outputs>
       <inputs>
         <tool>
           <name>BICOMP</name>
-          <file> 12 0 4</file>
+          <file> 21 3 17</file>
         </tool>
         <tool>
           <name>ICC8051</name>
-          <file> 12 0 4</file>
+          <file> 21 3 17</file>
         </tool>
       </inputs>
     </file>
     <file>
-      <name>$PROJ_DIR$\Debug\Exe\LCD-Test.d51</name>
+      <name>$PROJ_DIR$\main.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 8</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 20</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 21 3 17</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 21 3 17</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\LCD-Test.hex</name>
       <inputs>
         <tool>
           <name>XLINK</name>
-          <file> 13 18 6 11 16</file>
+          <file> 10 4 20 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\Debug\Exe\LCD-Test1.hex</name>
+      <inputs>
+        <tool>
+          <name>XLINK</name>
+          <file> 10 4 20 1</file>
+        </tool>
+      </inputs>
+    </file>
+    <file>
+      <name>$PROJ_DIR$\snake.c</name>
+      <outputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 11</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 7</file>
+        </tool>
+      </outputs>
+      <inputs>
+        <tool>
+          <name>BICOMP</name>
+          <file> 16 17 3 21 6 5 0 9 12</file>
+        </tool>
+        <tool>
+          <name>ICC8051</name>
+          <file> 16 17 3 21 6 5 0 9 12</file>
         </tool>
       </inputs>
     </file>
@@ -129,7 +132,7 @@
       <outputs>
         <tool>
           <name>XLINK</name>
-          <file> 17</file>
+          <file> 2</file>
         </tool>
       </outputs>
     </file>

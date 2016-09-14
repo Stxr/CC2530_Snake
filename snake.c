@@ -54,6 +54,7 @@ void Snake_Init() { //蛇的初始化
     memset(&snake, 0, sizeof(snake));//结构体置零
     memset(&food, 0,  sizeof(food));
     Draw_frame(); //四周画框
+    Init_Key();
     // snake={{30,16},1,3,1};
     snake.nodes[0].x=30;
     snake.nodes[0].y=16;
@@ -63,16 +64,13 @@ void Snake_Init() { //蛇的初始化
     snake.nodes[2].y=16;
     snake.length=3;
     snake.live=1;
-
-    // P1DIR |= 0x01;           //P1.0定义为输出
-
     Snake_Display();//显示蛇的开始位置
     InitT3();
 }
 void Snake_Display() {
     if(snake.live) {
         for(int i=0; i<snake.length; i++) {
-            if(i==snake.length-1&&!Snake_EatedFood()) { //如果吃到了食物就不消去最后一个了
+            if(i==snake.length-1) { //如果吃到了食物就不消去最后一个了
                 Write_Dot(snake.nodes[i].x,snake.nodes[i].y,0,LCD_Display_char);
             } else {
                 Write_Dot(snake.nodes[i].x,snake.nodes[i].y,1,LCD_Display_char);
@@ -110,15 +108,17 @@ void InitT3() {
     EA = 1;                  //开总中断
 }
 void Food_Create(void) { //创造食物的函数
-  if(!food.exist){
-    food.position.x=44;//随机数
-    food.position.y=44;//随机数
-  }
+ if(!food.exist){
+    food.exist=1;
+    srand(snake.nodes[2].x+count);//随机种子
+    food.position.x=rand()%61+1;//随机数
+    food.position.y=rand()%29+1;//随机数
+ }
   Write_Dot(food.position.x,food.position.y,1,LCD_Display_char);
 }
 int Snake_Death(void){
   for(int i=3;i<MAX_LENGTH;i++){
-    if(snake.nodes[0]==snake.nodes[i]\
+    if((snake.nodes[0].x==snake.nodes[i].x&&snake.nodes[0].y==snake.nodes[i].y)||\
        snake.nodes[0].x==0  ||\
        snake.nodes[0].x==63 ||\
        snake.nodes[0].y==0  ||\
@@ -130,25 +130,65 @@ int Snake_Death(void){
   return 0;
 }
 int Snake_EatedFood(void){ //如果吃到了食物
-  if(snake.nodes[0]==food.position){
+  if(snake.nodes[0].x==food.position.x&&snake.nodes[0].y==food.position.y){
     snake.length++;//长度加一
     food.exist=0;//食物不存在了，要添加新的食物
-    return 1
+    return 1;
   }
   return 0;
 }
+int Snake_Key(void)
+{
+   int  value;
 
+  // APCFG |= 1 << 6 ; //注意这里是设置ADC输入通道！！
+   ADCCON3  = (0x36);            //选择1.25V为参考电压；14位分辨率；对片内温度传感器采样
+   ADCCON3 |= 0X80;
+   ADCCON1 |= 0x30;              //选择ADC的启动模式为手动
+   ADCCON1 |= 0x40;              //启动AD转化
+   while(!(ADCCON1 & 0x80));     //等待 AD 转换完成
+   value = (int) ADCL ;           //ADCL 寄存器低 2 位无效
+   value |= ((int)(ADCH) << 8);
 
+   return (int)sqrt(value);
+}
+void Init_Key(void)
+{
+//   DISABLE_ALL_INTERRUPTS();     //关闭所有中断
+  //  InitClock();                  //设置系统主时钟为 32M
+   P2SEL &=~0x01;
+   P2DIR &=~0x01;
+   APCFG |=0x40;
+   P0DIR &= ~0x40;     //按键接在P0.1口上，设P0.1为输入模式
+   //P0INP &= ~0x40;     //打开P0.1上拉电阻
+}
+void Snake_StartPage(void){
+  for(int i=0;i<3;i++){ //第四组
+    HalLcd_HW_DisplayChinese(i,0,35);
+  }
+  for(int i=3;i<6;i++){ //贪吃蛇
+    HalLcd_HW_DisplayChinese(i,3,-3*16+35);
+  }
+  for(int i=6;i<6+6;i++){//按任意键开始
+    HalLcd_HW_DisplayChinese(i,6,-6*16+10);
+  }
+}
+void Snake_EndPage(void){
+  for(int i=12;i<12+4;i++){//游戏结束
+    HalLcd_HW_DisplayChinese(i,3,-12*16+30);
+  }
+}
 #pragma vector = T3_VECTOR //定时器
 __interrupt void T3_ISR(void) {
     T3IE = 0;
     IRCON = 0x00;            //清中断标志, 也可由硬件自动完成 ]
     count++;
-    if(count==245) {      //245次中断后LED取反，闪烁一轮（约为0.5 秒时间）
+    if(count==100) {      //245次中断后LED取反，闪烁一轮（约为0.5 秒时间）
         //经过示波器测量确保精确
         count = 0;           //计数清零
         //  LED1 = ~LED1;        //改变LED1的状态
         Snake_Move(Snake_Direction);
+        Snake_EatedFood();
     }
     T3IE = 1;
 }
